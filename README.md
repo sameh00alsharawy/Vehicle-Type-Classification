@@ -69,17 +69,13 @@ Training was executed on an **NVIDIA RTX 4060 Laptop GPU** utilizing Automatic M
 ![Alt text](training_report.png)
 ![Alt text](confusion_matrix.png)
 
-
-*(Insert `training_report.png` here)*
-*(Insert `confusion_matrix.png` here)*
-
 ---
 
 ## 🔍 Model Auditing & Failure Mode Analysis (XAI)
 
 Despite achieving nearly 99% accuracy, high accuracy on identically distributed data can mask critical flaws. To ensure the model is safe for real-world deployment, a **Post-Hoc Model Audit** was performed on the misclassified test images using `LayerGradCam` hooked into the final convolutional layer of EfficientNet.
 
-The goal was to formulate hypotheses regarding the failure modes, design ablation experiments to test those hypotheses, and provide engineering recommendations—all without retraining the model to strictly prevent data leakage.
+The goal was to formulate hypotheses regarding the failure modes, design ablation experiments to test those hypotheses, and provide engineering recommendations—all without retraining the model to  prevent data leakage.
 
 ### A. Context Bias (The "Clever Hans" Effect)
 
@@ -88,6 +84,7 @@ The model frequently hallucinated vehicles based on background elements.
 * **Image 698 (Motorcycle $\rightarrow$ Train):** Grad-CAM highlighted background fencing. The model falsely learned that repetitive vertical lines equate to train tracks.
 * **Image 769 (Ship $\rightarrow$ Car):** Grad-CAM focused entirely on the asphalt beneath a dry-docked boat, assuming `Asphalt = Car`.
 * **Image 800 (Ship $\rightarrow$ Plane):** Grad-CAM highlighted vast blue water, misinterpreting it as blue sky.
+![Alt text](error_heatmaps/Motorcycles_as_Trains_Motorcycle (698).png)
 
 ### B. Multi-Object & Framing Violations
 
