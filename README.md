@@ -84,7 +84,7 @@ The model frequently hallucinated vehicles based on background elements.
 * **Image 698 (Motorcycle $\rightarrow$ Train):** Grad-CAM highlighted background fencing. The model falsely learned that repetitive vertical lines equate to train tracks.
 * **Image 769 (Ship $\rightarrow$ Car):** Grad-CAM focused entirely on the asphalt beneath a dry-docked boat, assuming `Asphalt = Car`.
 * **Image 800 (Ship $\rightarrow$ Plane):** Grad-CAM highlighted vast blue water, misinterpreting it as blue sky.
-![Alt text](error_heatmaps/Motorcycles_as_Trains_Motorcycle (698).png)
+![Alt text](error_heatmaps/Motorcycles_as_Trains_Motorcycle(698).png)
 
 ### B. Multi-Object & Framing Violations
 
