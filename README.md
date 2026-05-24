@@ -66,7 +66,8 @@ Training was executed on an **NVIDIA RTX 4060 Laptop GPU** utilizing Automatic M
 ### Results
 
 * **Test Dataset Accuracy:** `0.9881`
-
+![Alt text](training_report.png)
+![Alt text](confusion_matrix.png)
 
 
 *(Insert `training_report.png` here)*
