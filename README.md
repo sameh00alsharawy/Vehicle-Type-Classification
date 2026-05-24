@@ -1,18 +1,18 @@
 
 # Indian Vehicle Classification & AI Safety Audit (IVDAP 2025)
 
-## 📌 Project Overview
+##  Project Overview
 
 This project focuses on classifying vehicles into 7 distinct categories using deep learning. Initially developed for the **IVDAP 2025** course, the codebase has been entirely refactored in **PyTorch** to serve as a framework for **Explainable AI (XAI) and Model Auditing**. *(Details regarding the original Keras implementation can be found in `readme_old.md`).*
 
 By accurately identifying different types of vehicles, this system can be integrated into real-time monitoring pipelines. More importantly, this repository demonstrates how to use post-hoc interpretability tools (Grad-CAM) and adversarial testing to mathematically audit neural networks.
 
-## 📊 Dataset
+##  Dataset
 
 The project utilizes a custom dataset consisting of **5,600 images** evenly distributed across 7 classes:
 `Auto Rickshaws` | `Bikes` | `Cars` | `Motorcycles` | `Planes` | `Ships` | `Trains`
 
-## 🧠 Methodology & Architecture
+##  Methodology & Architecture
 
 ### 1. Data Preprocessing & Pipeline
 
@@ -36,7 +36,7 @@ To prevent overfitting and improve generalization, `torchvision.transforms` were
 *  The entire convolutional feature extractor (`model.features`) was frozen.
 * **Custom Head:** A custom dense classification head with Dropout (`p=0.3`) was attached and trained specifically on our 7 vehicle categories.
 
-## ⚙️ Prerequisites & Setup
+##  Prerequisites & Setup
 
 This project requires Python 3.11+ and an NVIDIA GPU (CUDA 11.8+ recommended).
 
@@ -53,7 +53,7 @@ pip install captum matplotlib opencv-python tqdm
 
 ```
 
-## 🚀 Training & Performance
+##  Training & Performance
 
 Training was executed on an **NVIDIA RTX 4060 Laptop GPU** utilizing Automatic Mixed Precision (AMP) to optimize VRAM usage.
 
@@ -71,7 +71,7 @@ Training was executed on an **NVIDIA RTX 4060 Laptop GPU** utilizing Automatic M
 
 ---
 
-## 🔍 Model Auditing & Failure Mode Analysis (XAI)
+##  Model Auditing & Failure Mode Analysis (XAI)
 
 Despite achieving nearly 99% accuracy, high accuracy on identically distributed data can mask critical flaws. To ensure the model is safe for real-world deployment, a **Post-Hoc Model Audit** was performed on the misclassified test images using `LayerGradCam` hooked into the final convolutional layer of EfficientNet.
 
@@ -102,7 +102,7 @@ The model frequently hallucinated vehicles based on background elements.
 
 ---
 
-## 🧪 Adversarial Hypothesis Testing
+##  Adversarial Hypothesis Testing
 
 To quantify the extent of the Context Bias, an adversarial script (`test_bias.py`) was developed to feed the model pure backgrounds (no vehicles) and perform color ablations.
 
@@ -129,7 +129,7 @@ ADVERSARIAL CONTEXT BIAS REPORT
 2. **Disproving the Color Hypothesis:** It was initially hypothesized that the model failed on Image 708 (a grayscale plane) due to a lack of blue sky. The ablation data (`99.98% -> 99.84%`) empirically disproves this. Furthermore, in Test 6, grayscale *improved* confidence (`78.95% -> 87.83%`).
 3. **Refined Hypothesis:** The model successfully relies on the geometric silhouette (edges/shapes) of airplanes regardless of color space. Image 708 likely failed because it was photographed from a ground-level angle with prominent circular landing gear, causing an overlapping feature conflict with the "Motorcycle" class.
 
-## 🛠️ Recommendations for Future Iterations
+##  Recommendations for Future Iterations
 
 Based on this audit, the following architectural changes are recommended prior to real-world deployment:
 
@@ -139,7 +139,7 @@ Based on this audit, the following architectural changes are recommended prior t
 
 ---
 
-## 💻 How to Run
+##  How to Run
 
 1. **Clone the Repository:**
 ```bash
@@ -162,7 +162,7 @@ cd indian-vehicle-classification
 
 
 
-## 📁 Repository Structure
+##  Repository Structure
 
 * `train.py`: Core training loop, data augmentation, and AMP scaling.
 * `evaluate.py`: Statistical testing and CSV error reporting.
@@ -172,6 +172,3 @@ cd indian-vehicle-classification
 * `Vehicle_Classification_Model_IVDAP.ipynb`: Original Keras implementation (Legacy).
 * `IVDAP Project Presentation.pdf`: Slide deck outlining the original project goals.
 
-## 🎓 Acknowledgments
-
-Special thanks to **Prof. Luisa Verdoliva** for supervising the original foundation of this project as part of the IVDAP 2025 curriculum.
