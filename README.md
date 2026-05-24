@@ -82,20 +82,23 @@ The goal was to formulate hypotheses regarding the failure modes, design ablatio
 The model frequently hallucinated vehicles based on background elements.
 
 * **Image 698 (Motorcycle $\rightarrow$ Train):** Grad-CAM highlighted background fencing. The model falsely learned that repetitive vertical lines equate to train tracks.
-* **Image 769 (Ship $\rightarrow$ Car):** Grad-CAM focused entirely on the asphalt beneath a dry-docked boat, assuming `Asphalt = Car`.
-* **Image 800 (Ship $\rightarrow$ Plane):** Grad-CAM highlighted vast blue water, misinterpreting it as blue sky.
 ![Alt text](error_heatmaps/Motorcycles_as_Trains_Motorcycle(698).png)
+* **Image 769 (Ship $\rightarrow$ Car):** Grad-CAM focused entirely on the asphalt beneath a dry-docked boat, assuming `Asphalt = Car`.
+![Alt text](error_heatmaps/Ships_as_Cars_Ship(769).png)
+* **Image 800 (Ship $\rightarrow$ Plane):** Grad-CAM highlighted vast blue water, misinterpreting it as blue sky.
+![Alt text](error_heatmaps/Ships_as_Planes_Ship(800).png)
+
 
 ### B. Multi-Object & Framing Violations
 
 * **Image 793 (Auto $\rightarrow$ Motorcycle):** The model correctly identified a motorcycle in the background. The classification task itself is flawed when multiple objects exist in a single frame.
 * **Image 773 (Ship $\rightarrow$ Plane):** The aircraft carrier literally contained airplanes, which the model correctly focused on.
+![Alt text](error_heatmaps/Ships_as_Planes_Ship(773).png)
 
 ### C. Dataset Noise (Labeling Errors)
 
 * **Image 762 (Motorcycle $\rightarrow$ Bike):** The image was actually a bicycle, but the ground truth was incorrectly labeled "Motorcycle." Grad-CAM perfectly highlighted the bicycle frame, proving the AI extracted the correct features despite the human annotation error.
-
-*(Insert a composite image of 3-4 side-by-side Grad-CAM error heatmaps here)*
+![Alt text](error_heatmaps/Motorcycles_as_Bikes_Motorcycle(762).png)
 
 ---
 
