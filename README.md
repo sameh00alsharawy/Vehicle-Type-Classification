@@ -5,7 +5,7 @@
 
 This project focuses on classifying vehicles into 7 distinct categories using deep learning. Initially developed for the **IVDAP 2025** course, the codebase has been entirely refactored in **PyTorch** to serve as a framework for **Explainable AI (XAI) and Model Auditing**. *(Details regarding the original Keras implementation can be found in `readme_old.md`).*
 
-By accurately identifying different types of vehicles, this system can be integrated into real-time monitoring pipelines. More importantly, this repository demonstrates how to use post-hoc interpretability tools (Grad-CAM) and adversarial testing to mathematically audit neural networks for contextual bias and spurious correlations.
+By accurately identifying different types of vehicles, this system can be integrated into real-time monitoring pipelines. More importantly, this repository demonstrates how to use post-hoc interpretability tools (Grad-CAM) and adversarial testing to mathematically audit neural networks.
 
 ## 📊 Dataset
 
@@ -16,7 +16,7 @@ The project utilizes a custom dataset consisting of **5,600 images** evenly dist
 
 ### 1. Data Preprocessing & Pipeline
 
-The pipeline utilizes a robust, lazy-loading PyTorch `DataLoader` optimized for GPU data transfers (`pin_memory=True`). It includes on-the-fly cleaning using `ImageFolder`'s `is_valid_file` parameter to dynamically reject:
+The pipeline utilizes a robust, lazy-loading PyTorch `DataLoader` optimized for GPU data transfers (`pin_memory=True`). It includes on-line cleaning using `ImageFolder`'s `is_valid_file` parameter to dynamically reject:
 
 * Corrupted `.jpg` and `.png` headers.
 * Unsupported `.webp` formats.
@@ -33,7 +33,7 @@ To prevent overfitting and improve generalization, `torchvision.transforms` were
 ### 3. Model Architecture (EfficientNet-B3)
 
 * **Transfer Learning:** The model utilizes modern `EfficientNet_B3_Weights.DEFAULT` (ImageNet).
-* **Linear Probing:** The entire convolutional feature extractor (`model.features`) was frozen to prevent catastrophic forgetting.
+*  The entire convolutional feature extractor (`model.features`) was frozen.
 * **Custom Head:** A custom dense classification head with Dropout (`p=0.3`) was attached and trained specifically on our 7 vehicle categories.
 
 ## ⚙️ Prerequisites & Setup
@@ -59,13 +59,15 @@ Training was executed on an **NVIDIA RTX 4060 Laptop GPU** utilizing Automatic M
 
 * **Epochs:** 50
 * **Batch Size:** 16
-* **Loss Function:** Cross-Entropy Loss (optimizing for model confidence/calibration)
+* **Loss Function:** Cross-Entropy Loss 
 * **Optimizer:** AdamW (Learning Rate: `1e-4`, Weight Decay: `1e-4`)
 * **Schedulers:** `ReduceLROnPlateau` and Early Stopping tracking Validation Loss.
 
 ### Results
 
 * **Test Dataset Accuracy:** `0.9881`
+
+
 
 *(Insert `training_report.png` here)*
 *(Insert `confusion_matrix.png` here)*
