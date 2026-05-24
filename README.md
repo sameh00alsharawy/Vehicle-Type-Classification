@@ -1,10 +1,3 @@
-This README draft has all the right ingredients, but it needs a structural polish to read like a professional, top-tier research repository. Labs want to see a clear narrative flow: **What did you build? How does it perform? Why did it fail? How would you fix it?**
-
-I have reformatted your text into standard GitHub Markdown. I updated the technical details to reflect your new PyTorch stack (you mentioned TensorFlow `Sequential` in the draft, which is from the old Keras code), filled in the missing gaps for the loss functions and execution steps, and structured your brilliant XAI failure analysis into a highly readable format.
-
-Here is the complete, portfolio-ready `README.md` file.
-
----
 
 # Indian Vehicle Classification & AI Safety Audit (IVDAP 2025)
 
