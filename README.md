@@ -1,5 +1,5 @@
 
-# Indian Vehicle Classification & AI Safety Audit (IVDAP 2025)
+#  Vehicle Classification & AI Safety Audit (IVDAP 2025)
 
 ##  Project Overview
 
